@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import Cart from './components/Cart'; // Importa el componente Cart
 
+
 function App() {
   return (
     <Router>

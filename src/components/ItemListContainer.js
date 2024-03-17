@@ -10,7 +10,7 @@ const ItemListContainer = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const itemsCollection = db.collection('Items');
+        const itemsCollection = db.collection('Items'); // Nombre exacto de la colección en Firestore
         let query = itemsCollection;
 
         if (category) {
