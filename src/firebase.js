@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyA0FexkFtxivqc5ycZk9dN7J40OCG_BWE4",
+  authDomain: "proyecto-react-a3872.firebaseapp.com",
+  projectId: "proyecto-react-a3872",
+  storageBucket: "proyecto-react-a3872.appspot.com",
+  messagingSenderId: "523953906107",
+  appId: "1:523953906107:web:5aaa796a5ebae0a12de49e"
 };
 
 const app = initializeApp(firebaseConfig);
