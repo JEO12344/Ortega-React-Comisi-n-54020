@@ -1,28 +1,31 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA0FexkFtxivqc5ycZk9dN7J40OCG_BWE4",
-  authDomain: "proyecto-react-a3872.firebaseapp.com",
-  projectId: "proyecto-react-a3872",
-  storageBucket: "proyecto-react-a3872.appspot.com",
-  messagingSenderId: "523953906107",
-  appId: "1:523953906107:web:5aaa796a5ebae0a12de49e"
+  apiKey: "AIzaSyDPuwzd_9ffHU62QF4PrJMY6IOBSlItsLo",
+  authDomain: "proyecto-ortega.firebaseapp.com",
+  projectId: "proyecto-ortega",
+  storageBucket: "proyecto-ortega.appspot.com",
+  messagingSenderId: "381451190478",
+  appId: "1:381451190478:web:a279212aca63e4aa09909f"
 };
 
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
+
+// Obtener la referencia a la base de datos Firestore
 const db = getFirestore(app);
 
-const addItemToFirestore = async (item) => {
-  try {
-    const docRef = await addDoc(collection(db, 'items'), item);
-    console.log('Document written with ID: ', docRef.id);
-    return docRef.id; // Retorna el ID del nuevo documento
-  } catch (e) {
-    console.error('Error adding document: ', e);
-    return null;
-  }
-};
+// Función para obtener libros por categoría
+export const getBooksByCategory = async (category) => {
+  const booksCollection = collection(db, 'books');
+  const q = query(booksCollection, where('category', '==', category));
+  const querySnapshot = await getDocs(q);
 
-export { db, addItemToFirestore }; // Exportar db y addItemToFirestore
-export default db; // También puedes exportar db como default si lo necesitas
+  const books = [];
+  querySnapshot.forEach((doc) => {
+    books.push({ id: doc.id, ...doc.data() });
+  });
+
+  return books;
+};

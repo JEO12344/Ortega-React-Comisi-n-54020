@@ -5,7 +5,15 @@ const ItemList = ({ items }) => {
   return (
     <div>
       {items.map((item) => (
-        <Item key={item.id} item={item} />
+        <Item
+          key={item.id}
+          id={item.id}
+          nombre={item.nombre}
+          categoria={item.categoria}
+          precio={item.precio}
+          stock={item.stock}
+          photoLink={item.photoLink}
+        />
       ))}
     </div>
   );

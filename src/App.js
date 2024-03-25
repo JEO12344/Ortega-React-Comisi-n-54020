@@ -12,7 +12,10 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<ItemListContainer />} />
-          <Route path="/cart" element={<Cart />} /> {/* Ruta para el carrito */}
+          <Route path="/categories/histórico" element={<ItemListContainer />} /> {/* Ruta para Histórico */}
+          <Route path="/categories/terror" element={<ItemListContainer />} /> {/* Ruta para Terror */}
+          <Route path="/categories/fantasia" element={<ItemListContainer />} /> {/* Ruta para Fantasía */}
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
     </Router>

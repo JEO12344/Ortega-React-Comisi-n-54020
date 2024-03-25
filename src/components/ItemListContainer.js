@@ -1,42 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import db from '../firebase'; // Asegúrate de tener la ruta correcta aquí
-import ItemList from './ItemList';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import './ItemListContainer.css'; // Estilos CSS para ItemListContainer
 
-const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
+function ItemListContainer() {
+  const [books, setBooks] = useState([]);
   const { category } = useParams();
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const itemsCollection = db.collection('Items'); // Nombre exacto de la colección en Firestore
-        let query = itemsCollection;
+    const fetchBooksByCategory = async () => {
+      if (!category) return; // Salir si category no está definido
+      const db = getFirestore();
+      const booksCollection = collection(db, 'books');
+      const q = query(booksCollection, where('category', '==', category));
+      const querySnapshot = await getDocs(q);
 
-        if (category) {
-          query = itemsCollection.where('categoria', '==', category);
-        }
+      const booksData = [];
+      querySnapshot.forEach((doc) => {
+        booksData.push({ id: doc.id, ...doc.data() });
+      });
 
-        const snapshot = await query.get();
-        const itemsData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setItems(itemsData);
-      } catch (error) {
-        console.error('Error fetching items: ', error);
-      }
+      setBooks(booksData);
     };
 
-    fetchItems();
+    fetchBooksByCategory();
   }, [category]);
 
   return (
-    <div>
-      <h2>Productos disponibles</h2>
-      <ItemList items={items} />
+    <div className="item-list-container">
+      <h2>Libros de {category}</h2>
+      <div className="books-list">
+        {books.map(book => (
+          <div key={book.id} className="book-item">
+            <img src={book.image} alt={book.title} />
+            <h3>{book.title}</h3>
+            <p>Autor: {book.author}</p>
+            <p>Descripción: {book.description}</p>
+            <p>Precio: ${book.price}</p>
+            <p>Categoría: {book.category}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default ItemListContainer;
