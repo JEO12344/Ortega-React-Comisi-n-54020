@@ -1,0 +1,32 @@
+.cart-view {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .cart-view h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .cart-view ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cart-view li {
+    margin-bottom: 5px;
+  }
+  
+  .cart-view button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cart-view button:hover {
+    background-color: #c82333;
+  }

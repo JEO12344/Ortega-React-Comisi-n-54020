@@ -1,0 +1,35 @@
+
+
+.categorias {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .categorias h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .categorias ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .categorias li {
+    margin-bottom: 5px;
+  }
+  
+  .categorias a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .categorias a:hover {
+    color: #007bff;
+  }
+  
+  
