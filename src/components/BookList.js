@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { db } from '../config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useParams } from 'react-router-dom';
 import "./BookList.css";
 
 function BookList({ addToCart }) {
-  const booksRef = collection(db, 'books');
   const [books, setBooks] = useState([]);
   const { categoria } = useParams();
 
   useEffect(() => {
+    const booksRef = collection(db, 'books');
+
     const getBooks = async () => {
       let queryBooks = booksRef;
 
-      if (categoria) {
+      if (categoria && categoria !== 'all') {
         const q = query(booksRef, where('category', '==', categoria));
         queryBooks = q;
       }
