@@ -5,6 +5,7 @@ import Categorias from './components/Categorias';
 import CartView from './components/CartView';
 import ItemDetail from './components/ItemDetail';
 import BooksByCategory from './components/BooksByCategory';
+
 const App = () => {
   const [carrito, setCarrito] = useState([]);
 
@@ -24,10 +25,18 @@ const App = () => {
           <Categorias />
         </header>
         <Routes>
-          <Route path="/" element={<BookList addToCart={addToCart} />} />
-          <Route path="/categorias/:categoria" element={<BooksByCategory />} /> {/* Ruta para mostrar libros por categoría */}
-          <Route path="/cart" element={<CartView carrito={carrito} clearCart={clearCart} />} />
-          <Route path="/item/:id" element={<ItemDetail />} />
+          <Route
+            path="/"
+            element={<BookList addToCart={addToCart} />} />
+          <Route
+            path="/categorias/:categoria"
+            element={<BooksByCategory addToCart={addToCart} />} /> {/* Pasa addToCart como prop */}
+          <Route
+            path="/cart"
+            element={<CartView carrito={carrito} clearCart={clearCart} />} />
+          <Route
+            path="/item/:id"
+            element={<ItemDetail />} />
         </Routes>
       </div>
     </Router>
